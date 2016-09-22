@@ -1,5 +1,6 @@
 package tp2;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,7 +19,7 @@ public class Pantalla {
 
 	private JFrame frame;
 	private JMapViewer Mapa;
-
+	private MapMarker marker;
 	/**
 	 * Launch the application.
 	 */
@@ -55,21 +56,9 @@ public class Pantalla {
 		Mapa = new JMapViewer();
 		Mapa.setZoomContolsVisible(false);
 		Mapa.setDisplayPositionByLatLon(-34.521, -58.7008, 15);
-
 		frame.setContentPane(Mapa);
-		// ArrayList <Coordenada> puntos = new Coordenada();
-
-	}
-
-	public static Coordenada leerJson() {
-		Gson gson = new Gson();
-		Coordenada ret = null;
-		try {
-			BufferedReader br = new BufferedReader(
-					new FileReader("C:\\Users\\San\\Desktop\\Instancias\\instancia1.json"));
-			ret = gson.fromJson(br, Coordenada.class);
-		} catch (Exception e) {
-		}
-		return ret;
+		
+		Coordenadas Puntos = new Coordenadas("instancia1.json");
+		Puntos.MarcarPuntos(marker, Mapa);
 	}
 }
