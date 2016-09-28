@@ -15,11 +15,15 @@ import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 public class Pantalla {
 
 	private JFrame frame;
 	private JMapViewer Mapa;
 	private MapMarker marker;
+	private int Zoom = 14;
 	/**
 	 * Launch the application.
 	 */
@@ -49,16 +53,35 @@ public class Pantalla {
 	private void initialize() {
 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
+		frame.setBounds(100, 100,1000, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		Mapa = new JMapViewer();
 		Mapa.setZoomContolsVisible(false);
-		Mapa.setDisplayPositionByLatLon(-34.521, -58.7008, 15);
-		frame.setContentPane(Mapa);
-		
 		Coordenadas Puntos = new Coordenadas("instancia1.json");
 		Puntos.MarcarPuntos(marker, Mapa);
+		Mapa.setDisplayPositionByLatLon(-34.521, -58.7008, Zoom);
+		frame.setContentPane(Mapa);
+		
+		frame.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				int keyCode = e.getKeyCode();
+				switch (keyCode) {
+				case KeyEvent.VK_C:
+					Mapa.setDisplayPositionByLatLon(Puntos.LatitudPromedio(), Puntos.LongitudPromedio(), Zoom);
+					break;
+				case KeyEvent.VK_ADD:
+					Mapa.setDisplayPositionByLatLon(Puntos.LatitudPromedio(), Puntos.LongitudPromedio(), Zoom++);
+					break;
+				case KeyEvent.VK_SUBTRACT:
+					Mapa.setDisplayPositionByLatLon(Puntos.LatitudPromedio(), Puntos.LongitudPromedio(), Zoom--);
+					break;
+				}
+			}
+		});		
+		
+		
 	}
 }

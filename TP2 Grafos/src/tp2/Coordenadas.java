@@ -13,6 +13,7 @@ import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class Coordenadas {
 
@@ -24,22 +25,19 @@ public class Coordenadas {
 		try
 		{
 			BufferedReader br = new BufferedReader(new FileReader(archivo));
-			this.Coordenadas = gson.fromJson(br, (new ArrayList<Coordenada>()).getClass());
+			this.Coordenadas = gson.fromJson(br, new TypeToken<ArrayList<Coordenada>>() {}.getType());
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-		}
-		
-		System.out.println(this.Coordenadas.size());
-		
+		}		
 	}
 	
 	public double LatitudPromedio(){
 		double ret = 0;
-		for(int x = 0; x <= Coordenadas.size();x++)
+		for(int x = 0; x < Coordenadas.size();x++)
 		{
-			ret =+ Coordenadas.get(x).getLatitud();
+			ret += Coordenadas.get(x).getLatitud();
 		}
 		ret = ret/Coordenadas.size();
 		
@@ -48,9 +46,9 @@ public class Coordenadas {
 	
 	public double LongitudPromedio(){
 		double ret = 0;
-		for(int x = 0; x <= Coordenadas.size();x++)
+		for(int x = 0; x < Coordenadas.size();x++)
 		{
-			ret =+ Coordenadas.get(x).getLongitud();
+			ret += Coordenadas.get(x).getLongitud();
 		}
 		ret = ret/Coordenadas.size();
 		
@@ -58,16 +56,12 @@ public class Coordenadas {
 	}
 	
 	public void MarcarPuntos(MapMarker marker,JMapViewer Mapa){
-		
-		System.out.print(Coordenadas.get(0).getLatitud());
-		
-		
-		for(int x = 0; x <= Coordenadas.size();x++){
+		for(int x = 0; x < Coordenadas.size();x++)
+		{
 			marker = new MapMarkerDot(Coordenadas.get(x).getLatitud(), Coordenadas.get(x).getLongitud());
 	 		marker.getStyle().setBackColor(Color.RED);
 	 		Mapa.addMapMarker(marker);
 	 	}
 	 	
 	}
-
 }
