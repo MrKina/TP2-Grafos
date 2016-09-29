@@ -18,50 +18,44 @@ import com.google.gson.reflect.TypeToken;
 public class Coordenadas {
 
 	ArrayList<Coordenada> Coordenadas = new ArrayList<Coordenada>();
-	
-	public Coordenadas(String archivo)
-	{
+
+	public Coordenadas(String archivo) {
 		Gson gson = new Gson();
-		try
-		{
+		try {
 			BufferedReader br = new BufferedReader(new FileReader(archivo));
-			this.Coordenadas = gson.fromJson(br, new TypeToken<ArrayList<Coordenada>>() {}.getType());
-		}
-		catch (Exception e)
-		{
+			this.Coordenadas = gson.fromJson(br, new TypeToken<ArrayList<Coordenada>>() {
+			}.getType());
+		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 	}
-	
-	public double LatitudPromedio(){
+
+	public double LatitudPromedio() {
 		double ret = 0;
-		for(int x = 0; x < Coordenadas.size();x++)
-		{
+		for (int x = 0; x < Coordenadas.size(); x++) {
 			ret += Coordenadas.get(x).getLatitud();
 		}
-		ret = ret/Coordenadas.size();
-		
+		ret = ret / Coordenadas.size();
+
 		return ret;
 	}
-	
-	public double LongitudPromedio(){
+
+	public double LongitudPromedio() {
 		double ret = 0;
-		for(int x = 0; x < Coordenadas.size();x++)
-		{
+		for (int x = 0; x < Coordenadas.size(); x++) {
 			ret += Coordenadas.get(x).getLongitud();
 		}
-		ret = ret/Coordenadas.size();
-		
+		ret = ret / Coordenadas.size();
+
 		return ret;
 	}
-	
-	public void MarcarPuntos(MapMarker marker,JMapViewer Mapa){
-		for(int x = 0; x < Coordenadas.size();x++)
-		{
+
+	public void MarcarPuntos(MapMarker marker, JMapViewer Mapa) {
+		for (int x = 0; x < Coordenadas.size(); x++) {
 			marker = new MapMarkerDot(Coordenadas.get(x).getLatitud(), Coordenadas.get(x).getLongitud());
-	 		marker.getStyle().setBackColor(Color.RED);
-	 		Mapa.addMapMarker(marker);
-	 	}
-	 	
+			marker.getStyle().setBackColor(Color.RED);
+			Mapa.addMapMarker(marker);
+		}
+
 	}
 }

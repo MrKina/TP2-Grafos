@@ -3,33 +3,13 @@ package tp2;
 public class Coordenada {
 	public double latitud;
 	public double longitud;
-	
 
-	public double getLatitud(){
+	public double getLatitud() {
 		return this.latitud;
 	}
-	
-	public double getLongitud(){
+
+	public double getLongitud() {
 		return this.longitud;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}
 
+}

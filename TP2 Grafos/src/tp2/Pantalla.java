@@ -24,6 +24,7 @@ public class Pantalla {
 	private JMapViewer Mapa;
 	private MapMarker marker;
 	private int Zoom = 14;
+
 	/**
 	 * Launch the application.
 	 */
@@ -53,7 +54,7 @@ public class Pantalla {
 	private void initialize() {
 
 		frame = new JFrame();
-		frame.setBounds(100, 100,1000, 800);
+		frame.setBounds(100, 100, 1000, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -63,7 +64,7 @@ public class Pantalla {
 		Puntos.MarcarPuntos(marker, Mapa);
 		Mapa.setDisplayPositionByLatLon(-34.521, -58.7008, Zoom);
 		frame.setContentPane(Mapa);
-		
+
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -80,8 +81,7 @@ public class Pantalla {
 					break;
 				}
 			}
-		});		
-		
-		
+		});
+
 	}
 }
