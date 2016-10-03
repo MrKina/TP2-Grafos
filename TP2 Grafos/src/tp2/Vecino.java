@@ -2,11 +2,10 @@ package tp2;
 
 public class Vecino {
 	Coordenada Vecino;
-	int Arista;
+	double Arista;
 	
-	Vecino(Coordenada AgregarVecino,int Arista)
-	{
-		this.Vecino = AgregarVecino;
-		this.Arista = Arista;
+	public Vecino(Coordenada nueva, double distanciaCoord) {
+		this.Vecino = nueva;
+		this.Arista = distanciaCoord;
 	}
 }

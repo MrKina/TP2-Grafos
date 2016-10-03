@@ -58,4 +58,9 @@ public class Coordenadas {
 		}
 
 	}
+	
+	public Coordenada PedirCoordenada(int e){
+		return Coordenadas.get(e);
+	}
+
 }

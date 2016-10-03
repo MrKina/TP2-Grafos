@@ -12,4 +12,12 @@ public class Coordenada {
 		return this.longitud;
 	}
 
+	public void setCoordenada(double Lat, double Long){
+		this.latitud = Lat;
+		this.longitud = Long;
+	}
+	
+	public boolean EsIgual(Coordenada Comparar){
+		return latitud == Comparar.latitud && Comparar.longitud == longitud; 
+	}
 }

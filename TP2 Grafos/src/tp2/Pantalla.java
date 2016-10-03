@@ -65,6 +65,9 @@ public class Pantalla {
 		Mapa.setDisplayPositionByLatLon(-34.521, -58.7008, Zoom);
 		frame.setContentPane(Mapa);
 
+		Resultado Grafo = new Resultado(Puntos);
+		Grafo.Mostrar();
+		
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
