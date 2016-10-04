@@ -1,19 +1,14 @@
 package tp2;
 
-import java.awt.Color;
+
 import java.awt.EventQueue;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
+
 
 import javax.swing.JFrame;
 
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
-import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
+//import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -67,6 +62,7 @@ public class Pantalla {
 
 		Resultado Grafo = new Resultado(Puntos);
 		Grafo.Mostrar();
+		Grafo.RealizarAGM();
 		
 		frame.addKeyListener(new KeyAdapter() {
 			@Override

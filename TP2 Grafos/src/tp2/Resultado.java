@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Resultado {
 
 	ArrayList<SuperCoordenada> Resultado = new ArrayList<SuperCoordenada>();
+	ArrayList<AGM> ArbolGM = new ArrayList<AGM>();
+	ArrayList<Coordenada> Tocado = new ArrayList<Coordenada>();
 	
 	Resultado(Coordenadas puntos){
 	for(int x=0;x<puntos.Coordenadas.size();x++){
@@ -24,6 +26,7 @@ public class Resultado {
 				Vecinos.add(Agregar);
 			}
 		}
+		
 	return Vecinos;
 	}
 	
@@ -39,7 +42,7 @@ public class Resultado {
 	    double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));  
 	    double distancia = radioTierra * va2;  
 	 
-	    return distancia;  
+	    return distancia * 1000;  
 	 
 	}
 	
@@ -50,7 +53,33 @@ public class Resultado {
 		System.out.println("Vecino Latitud: " + Resultado.get(0).Vecinos.get(0).Vecino.getLatitud());
 		System.out.println("Vecino Longitud: " + Resultado.get(0).Vecinos.get(0).Vecino.getLongitud());
 		System.out.println("Distancia Vecino 0: " + Resultado.get(0).Vecinos.get(0).Arista);
+	}
+	
+	public void RealizarAGM(){
+		Coordenada Primero = new Coordenada();
+		AGM Auxiliar = new AGM();
+		double auxaris=Double.MAX_VALUE;
+		Primero.setCoordenada(Resultado.get(0).Coordenada.latitud,Resultado.get(0).Coordenada.longitud);
+		Tocado.add(Primero);
+		//while(Tocado.size()<Resultado.size()){
+			for(int x=0; x<Resultado.size()-1;x++){
+			  if(Resultado.get(0).Vecinos.get(x).Arista<auxaris){
+				  auxaris=Resultado.get(0).Vecinos.get(x).Arista;
+				  System.out.println(auxaris);
+				  Coordenada Principio = new Coordenada();
+				  Coordenada Fin = new Coordenada();
+				  Principio.setCoordenada(Resultado.get(0).Coordenada.latitud,Resultado.get(0).Coordenada.longitud);
+				  Fin.setCoordenada(Resultado.get(x).Vecinos.get(x).Vecino.latitud, Resultado.get(0).Coordenada.longitud);
+				  Auxiliar.setAGM(Principio, Fin, auxaris);
+			  }
+			}
+		}
+		
 		
 	}
 	
-}
+	
+	
+	
+		
+//}
