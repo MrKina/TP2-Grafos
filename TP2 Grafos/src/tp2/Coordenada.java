@@ -17,6 +17,11 @@ public class Coordenada {
 		this.longitud = Long;
 	}
 	
+	public void setCoordenadaCoor(Coordenada Nueva){
+		this.latitud = Nueva.latitud;
+		this.longitud = Nueva.longitud;
+	}
+	
 	public boolean EsIgual(Coordenada Comparar){
 		return latitud == Comparar.latitud && Comparar.longitud == longitud; 
 	}

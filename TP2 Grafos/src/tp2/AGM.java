@@ -7,8 +7,8 @@ public class AGM {
 	double Arista;
 	
 	public void setAGM(Coordenada Ini, Coordenada End, double Peso){
-		this.Inicio = Ini;
-		this.Fin = End;
+		this.Inicio.setCoordenadaCoor(Ini); ;
+		this.Fin.setCoordenadaCoor(End);
 		this.Arista = Peso;
 	}
 }

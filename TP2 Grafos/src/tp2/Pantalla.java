@@ -61,8 +61,9 @@ public class Pantalla {
 		frame.setContentPane(Mapa);
 
 		Resultado Grafo = new Resultado(Puntos);
-		Grafo.Mostrar();
 		Grafo.RealizarAGM();
+		Grafo.Mostrar();
+		
 		
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
