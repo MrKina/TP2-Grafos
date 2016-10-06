@@ -22,7 +22,9 @@ public class Resultado {
 		ArrayList<Vecino> Vecinos = new ArrayList<Vecino>();
 		for (int x = 0; x < Coordenadas.Coordenadas.size(); x++) {
 			if (!Coordenadas.Coordenadas.get(x).EsIgual(Nueva)) {
-				Vecino Agregar = new Vecino(Nueva, distanciaCoord(Nueva.getLatitud(), Nueva.getLongitud(),
+				Coordenada CoordenadaVecino = new Coordenada();
+				CoordenadaVecino.setCoordenadaCoor(Coordenadas.Coordenadas.get(x));
+				Vecino Agregar = new Vecino(CoordenadaVecino, distanciaCoord(Nueva.getLatitud(), Nueva.getLongitud(),
 						Coordenadas.Coordenadas.get(x).getLatitud(), Coordenadas.Coordenadas.get(x).getLongitud()));
 				Vecinos.add(Agregar);
 			}
@@ -48,21 +50,16 @@ public class Resultado {
 	}
 
 	public void Mostrar() {
-		System.out.println("Cantidad de Puntos " + Resultado.size());
-		System.out.println("Latitud Pos 0: " + Resultado.get(0).Coordenada.latitud);
-		System.out.println("Long Pos 0: " + Resultado.get(0).Coordenada.longitud);
-		System.out.println("Cantidad Vecinos: " + Resultado.get(0).Vecinos.size());
-		System.out.println("Vecino Latitud: " + Resultado.get(0).Vecinos.get(0).Vecino.latitud);
-		System.out.println("Vecino Longitud: " + Resultado.get(0).Vecinos.get(0).Vecino.longitud);
-		System.out.println("Distancia Vecino 0: " + Resultado.get(0).Vecinos.get(0).Arista);
-/*
-		for (int x = 0; x < ArbolGM.size(); x++) {
-			System.out.println(
-					"Inicio " + x + " : " + ArbolGM.get(x).Inicio.latitud + " / " + ArbolGM.get(x).Inicio.longitud);
-			System.out.println("Arista " + x + " : " + ArbolGM.get(x).Arista);
-			System.out.println("Fin " + x + " : " + ArbolGM.get(x).Fin.latitud + " / " + ArbolGM.get(x).Fin.longitud);
+		for (int x = 0; x < Resultado.size(); x++) {
+			System.out.println("Coordenada " + x + " : " + Resultado.get(x).Coordenada.latitud
+					+ Resultado.get(x).Coordenada.longitud);
+			for (int y = 0; y < Resultado.get(x).Vecinos.size(); y++) {
+				System.out.println(
+						"Coordenada de Vecino " + y + " : " + Resultado.get(x).Vecinos.get(y).Vecino.latitud
+								+ " / " + Resultado.get(x).Vecinos.get(y).Vecino.longitud);
+				System.out.println("Arista de Vecino " + y + " : " + Resultado.get(x).Vecinos.get(y).Arista);
+			}
 		}
-*/
 	}
 
 	public void RealizarAGM() {
@@ -72,7 +69,7 @@ public class Resultado {
 		Primero.setCoordenada(Resultado.get(0).Coordenada.latitud, Resultado.get(0).Coordenada.longitud);
 		Tocado.add(Primero);
 		while (Tocado.size() < Resultado.size()) {
-			for (int x = 0; x<Resultado.size(); x++) {
+			for (int x = 0; x < Resultado.size(); x++) {
 				if (EstaTocado(Resultado.get(x).Coordenada)) {
 					MenorCamino = BuscarAristaMinima(Resultado.get(x).Coordenada, Resultado.get(x).Vecinos);
 					if (MenorCamino.Arista < Auxiliar.Arista) {
@@ -82,27 +79,25 @@ public class Resultado {
 					}
 				}
 			}
+			System.out.println(Auxiliar.Arista);
 			ArbolGM.add(Auxiliar);
-			System.out.println(Auxiliar.Fin.latitud);
-			System.out.println(Auxiliar.Fin.longitud);
 			Tocado.add(Auxiliar.Fin);
 			
+
 		}
 
 	}
 
 	private AGM BuscarAristaMinima(Coordenada CoordenadaInicio, ArrayList<Vecino> Vecinos) {
 		AGM Nuevo = new AGM();
-		System.out.println(CoordenadaInicio.latitud);
-		System.out.println(CoordenadaInicio.longitud);
-		Nuevo.Inicio.setCoordenada(CoordenadaInicio.latitud,CoordenadaInicio.longitud);
+		Nuevo.Inicio = CoordenadaInicio;
 		double Arista = Double.MAX_VALUE;
-		
+
 		for (int x = 0; x < Vecinos.size(); x++) {
 			if (Vecinos.get(x).Arista < Arista) {
 				Arista = Vecinos.get(x).Arista;
 				Nuevo.Arista = Vecinos.get(x).Arista;
-				Nuevo.Fin.setCoordenada(Vecinos.get(x).Vecino.latitud,Vecinos.get(x).Vecino.longitud);
+				Nuevo.Fin = Vecinos.get(x).Vecino;
 			}
 		}
 		return Nuevo;
@@ -110,8 +105,11 @@ public class Resultado {
 
 	private boolean EstaTocado(Coordenada Coor) {
 		for (int x = 0; x < Tocado.size(); x++) {
-			System.out.println(x);
-			System.out.println(Tocado.size());
+			System.out.println(Coor.latitud);
+			System.out.println(Tocado.get(x).latitud);
+			System.out.println(Coor.longitud);
+			System.out.println(Tocado.get(x).longitud);
+
 			if (Coor.latitud == Tocado.get(x).latitud && Coor.longitud == Tocado.get(x).longitud) {
 				return true;
 			}

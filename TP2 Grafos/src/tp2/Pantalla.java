@@ -61,6 +61,7 @@ public class Pantalla {
 		frame.setContentPane(Mapa);
 
 		Resultado Grafo = new Resultado(Puntos);
+		
 		Grafo.RealizarAGM();
 		Grafo.Mostrar();
 		
