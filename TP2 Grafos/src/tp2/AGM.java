@@ -11,4 +11,12 @@ public class AGM {
 		this.Fin.setCoordenadaCoor(End);
 		this.Arista = Peso;
 	}
+
+	public Coordenada getFin() {
+		return Fin;
+	}
+
+	public void setFin(Coordenada fin) {
+		Fin = fin;
+	}
 }

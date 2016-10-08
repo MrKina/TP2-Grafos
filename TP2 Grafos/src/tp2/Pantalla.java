@@ -63,7 +63,9 @@ public class Pantalla {
 		Resultado Grafo = new Resultado(Puntos);
 		
 		Grafo.RealizarAGM();
+		Grafo.clustering();
 		Grafo.MostrarAGM(marker,Mapa);
+		
 			
 		frame.addKeyListener(new KeyAdapter() {
 			@Override

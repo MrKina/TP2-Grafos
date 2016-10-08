@@ -139,6 +139,25 @@ public class Resultado {
 		{
 			Promedio += ArbolGM.get(x).Arista;
 		}
-		return Promedio * ArbolGM.size() + 1;
+		System.out.println("Promedio:"+Promedio / ArbolGM.size());
+		return Promedio / ArbolGM.size();
+	}
+	public void clustering(){
+		int aux=0;
+		System.out.println("inicio:" + ArbolGM.size()+1);
+		for(int x=0; x<ArbolGM.size();x++){
+			aux=PromedioArista();
+			if (ArbolGM.get(x).Arista>aux){
+				ArbolGM.remove(x).getFin();
+			}
+		}
+		System.out.println("Fin:" + ArbolGM.size()+1);
+		
+		
+	}
+
+	private int PromedioArista(double arista) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
