@@ -80,7 +80,6 @@ public class Resultado {
 
 	public void RealizarAGM() {
 		Coordenada Primero = new Coordenada();
-
 		AGM MenorCamino = new AGM();
 		Primero.setCoordenada(Resultado.get(0).Coordenada.latitud,
 				Resultado.get(0).Coordenada.longitud);
@@ -132,5 +131,14 @@ public class Resultado {
 			}
 		}
 		return false;
+	}
+	
+	private int PromedioArista(){
+		int Promedio = 0;
+		for(int x=0;x<ArbolGM.size();x++)
+		{
+			Promedio += ArbolGM.get(x).Arista;
+		}
+		return Promedio * ArbolGM.size() + 1;
 	}
 }

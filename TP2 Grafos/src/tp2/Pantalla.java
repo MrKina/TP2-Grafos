@@ -64,8 +64,7 @@ public class Pantalla {
 		
 		Grafo.RealizarAGM();
 		Grafo.MostrarAGM(marker,Mapa);
-		
-		
+			
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
