@@ -1,15 +1,9 @@
 package tp2;
 
-
 import java.awt.EventQueue;
-
-
 import javax.swing.JFrame;
-
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
-//import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -55,18 +49,16 @@ public class Pantalla {
 
 		Mapa = new JMapViewer();
 		Mapa.setZoomContolsVisible(false);
-		Coordenadas Puntos = new Coordenadas("instancia1.json");
+		Coordenadas Puntos = new Coordenadas("instancia4.json");
 		Puntos.MarcarPuntos(marker, Mapa);
 		Mapa.setDisplayPositionByLatLon(-34.521, -58.7008, Zoom);
 		frame.setContentPane(Mapa);
 
 		Resultado Grafo = new Resultado(Puntos);
-		
 		Grafo.RealizarAGM();
 		Grafo.clustering();
-		Grafo.MostrarAGM(marker,Mapa);
-		
-			
+		Grafo.MostrarAGM(marker, Mapa);
+
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {

@@ -33,7 +33,6 @@ public class Coordenadas {
 			ret += Coordenadas.get(x).getLatitud();
 		}
 		ret = ret / Coordenadas.size();
-
 		return ret;
 	}
 
@@ -43,7 +42,6 @@ public class Coordenadas {
 			ret += Coordenadas.get(x).getLongitud();
 		}
 		ret = ret / Coordenadas.size();
-
 		return ret;
 	}
 
@@ -53,10 +51,9 @@ public class Coordenadas {
 			marker.getStyle().setBackColor(Color.RED);
 			Mapa.addMapMarker(marker);
 		}
-
 	}
-	
-	public Coordenada PedirCoordenada(int e){
+
+	public Coordenada PedirCoordenada(int e) {
 		return Coordenadas.get(e);
 	}
 

@@ -12,17 +12,17 @@ public class Coordenada {
 		return this.longitud;
 	}
 
-	public void setCoordenada(double Lat, double Long){
+	public void setCoordenada(double Lat, double Long) {
 		this.latitud = Lat;
 		this.longitud = Long;
 	}
-	
-	public void setCoordenadaCoor(Coordenada Nueva){
+
+	public void setCoordenadaCoor(Coordenada Nueva) {
 		this.latitud = Nueva.latitud;
 		this.longitud = Nueva.longitud;
 	}
-	
-	public boolean EsIgual(Coordenada Comparar){
-		return latitud == Comparar.latitud && Comparar.longitud == longitud; 
+
+	public boolean EsIgual(Coordenada Comparar) {
+		return latitud == Comparar.latitud && Comparar.longitud == longitud;
 	}
 }
