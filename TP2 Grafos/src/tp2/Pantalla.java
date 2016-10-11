@@ -75,13 +75,13 @@ public class Pantalla {
 		formattedTextField.setBackground(Color.BLACK);
 		formattedTextField.setFocusable(false);
 		formattedTextField.setFocusTraversalPolicyProvider(true);
-		formattedTextField.setText("C: Centrar / +: Acercar Zoom / -: Alejar Zoom / P: Poner Puntos del JSON / G: Mostrar AGM Armado");
+		formattedTextField.setText("C: Centrar / +: Acercar Zoom / -: Alejar Zoom / P: Poner Puntos del JSON / G: Mostrar Clustering");
 		formattedTextField.setBounds(10, 11, 972, 20);
 		Mapa.add(formattedTextField);
 
 		Resultado Grafo = new Resultado(Puntos);
 		Grafo.RealizarAGM();
-		Grafo.Clustering();
+		//Grafo.Clustering();
 		
 
 		frame.addKeyListener(new KeyAdapter() {

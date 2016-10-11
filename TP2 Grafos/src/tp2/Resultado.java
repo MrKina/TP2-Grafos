@@ -116,7 +116,7 @@ public class Resultado {
 		for (int x = 0; x < ArbolGM.size(); x++) {
 			Promedio += ArbolGM.get(x).Arista;
 		}
-		return Promedio / ArbolGM.size() + 200;// + 200;
+		return Promedio / ArbolGM.size() + 200;// + 200 metros de margen de agrupacion;
 	}
 
 	public void Clustering() {
