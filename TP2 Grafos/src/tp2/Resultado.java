@@ -17,7 +17,6 @@ public class Resultado {
 		for (int x = 0; x < puntos.Coordenadas.size(); x++) {
 			SuperCoordenada Prueba = new SuperCoordenada(puntos.Coordenadas.get(x),
 					CargarVecinos(puntos.Coordenadas.get(x), puntos));
-
 			Resultado.add(Prueba);
 		}
 
@@ -38,9 +37,8 @@ public class Resultado {
 		return Vecinos;
 	}
 
-	public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
-		// double radioTierra = 3958.75;//en millas
-		double radioTierra = 6371;// en kilómetros
+	private static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
+		double radioTierra = 6371;
 		double dLat = Math.toRadians(lat2 - lat1);
 		double dLng = Math.toRadians(lng2 - lng1);
 		double sindLat = Math.sin(dLat / 2);
@@ -58,9 +56,9 @@ public class Resultado {
 		for (int x = 0; x < ArbolGM.size(); x++) {
 			if (ArbolGM.get(x).Arista < PromedioArista()) {
 				ArrayList<Coordinate> coordenadas = new ArrayList<Coordinate>();
-				coordenadas.add(new Coordinate(ArbolGM.get(x).Inicio.latitud, ArbolGM.get(x).Inicio.longitud));
-				coordenadas.add(new Coordinate(ArbolGM.get(x).Fin.latitud, ArbolGM.get(x).Fin.longitud));
-				coordenadas.add(new Coordinate(ArbolGM.get(x).Inicio.latitud, ArbolGM.get(x).Inicio.longitud));
+				coordenadas.add(new Coordinate(ArbolGM.get(x).Inicio.latitud, ArbolGM.get(x).Inicio.getLongitud()));
+				coordenadas.add(new Coordinate(ArbolGM.get(x).Fin.latitud, ArbolGM.get(x).Fin.getLongitud()));
+				coordenadas.add(new Coordinate(ArbolGM.get(x).Inicio.latitud, ArbolGM.get(x).Inicio.getLongitud()));
 				MapPolygon polygon = new MapPolygonImpl(coordenadas);
 				Mapa.addMapPolygon(polygon);
 			}
@@ -121,7 +119,7 @@ public class Resultado {
 		return Promedio / ArbolGM.size() + 200;// + 200;
 	}
 
-	public void clustering() {
+	public void Clustering() {
 		ArrayList<Integer> Borrados = new ArrayList<Integer>();
 		int Auxiliar = PromedioArista();
 		for (int i = 0; i < ArbolGM.size(); i++) {
@@ -130,7 +128,7 @@ public class Resultado {
 			}
 		}
 		for (int i = 0; i < Borrados.size(); i++) {
-			ArbolGM.remove(Borrados.get(i).intValue());
+			ArbolGM.remove(Borrados.get(i));
 		}
 	}
 }
